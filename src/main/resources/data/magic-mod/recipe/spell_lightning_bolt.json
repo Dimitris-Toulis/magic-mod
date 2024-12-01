@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "#": "magic-mod:magic_dust",
+    "O": "minecraft:lightning_rod"
+  },
+  "result": {
+    "id": "magic-mod:spell_lightning_bolt",
+    "count": 1
+  }
+}

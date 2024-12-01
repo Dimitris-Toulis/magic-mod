@@ -13,7 +13,11 @@ import java.util.function.Function;
 
 public class ModItems {
     public static final Item MAGIC_DUST = register("magic_dust", Item::new, new Item.Settings());
-    public static final Item MAGIC_WAND_TIER_1 = register("magic_wand_tier_1", MagicWand::new, new Item.Settings().maxCount(16));
+    public static final Item MAGIC_WAND_TIER_1 = register("magic_wand_tier_1", MagicWand::new, new Item.Settings().maxCount(1));
+
+    public static final Item SPELL_FIREBALL = register("spell_fireball", Item::new, new Item.Settings());
+    public static final Item SPELL_LIGHTNING_BOLT = register("spell_lightning_bolt", Item::new, new Item.Settings());
+    public static final Item SPELL_ARROW = register("spell_arrow", Item::new, new Item.Settings());
 
     public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
         final RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MagicMod.MOD_ID, path));
@@ -24,6 +28,9 @@ public class ModItems {
     public static void init(){
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(itemGroup -> itemGroup.add(MAGIC_DUST));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(itemGroup -> itemGroup.add(MAGIC_WAND_TIER_1));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_FIREBALL));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_LIGHTNING_BOLT));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_ARROW));
     }
 
 }
