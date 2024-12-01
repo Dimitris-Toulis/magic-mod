@@ -13,7 +13,8 @@ import net.minecraft.util.Identifier;
 import java.util.function.Function;
 
 public class ModBlocks {
-    public static final Block MAGIC_ORE = register("magic_ore", Block::new, Block.Settings.create().strength(5f).requiresTool());
+    public static final Block MAGIC_ORE = register("magic_ore", Block::new, Block.Settings.create().strength(3f).requiresTool());
+    public static final Block DEEPSLATE_MAGIC_ORE = register("deepslate_magic_ore", Block::new, Block.Settings.create().strength(5f).requiresTool());
 
     private static Block register(String path, Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {
         final Identifier identifier = Identifier.of(MagicMod.MOD_ID, path);
@@ -26,5 +27,6 @@ public class ModBlocks {
 
     public static void init() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(itemGroup -> itemGroup.add(MAGIC_ORE));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(itemGroup -> itemGroup.add(DEEPSLATE_MAGIC_ORE));
     }
 }

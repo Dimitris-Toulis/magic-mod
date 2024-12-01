@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "magic-mod:magic_ore"
+    "magic-mod:magic_ore",
+    "magic-mod:deepslate_magic_ore"
   ]
 }
