@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " O ",
+    " O "
+  ],
+  "key": {
+    "#": "magic-mod:magic_dust",
+    "O": "minecraft:stick"
+  },
+  "result": {
+    "id": "magic-mod:magic_wand_tier_1",
+    "count": 1
+  }
+}
