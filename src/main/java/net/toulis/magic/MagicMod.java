@@ -25,5 +25,6 @@ public class MagicMod implements ModInitializer {
 		ModBlocks.init();
 		ModOres.init();
 		ModComponents.init();
+		ModBlockEntities.init();
 	}
 }

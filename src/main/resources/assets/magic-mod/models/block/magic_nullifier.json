@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "magic-mod:block/magic_nullifier_bottom",
+    "particle": "magic-mod:block/magic_nullifier_side",
+    "side": "magic-mod:block/magic_nullifier_side",
+    "top": "magic-mod:block/magic_nullifier_top"
+  }
+}
