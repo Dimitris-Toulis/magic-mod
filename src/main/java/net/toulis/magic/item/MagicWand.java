@@ -17,9 +17,11 @@ import net.toulis.magic.ModComponents;
 import java.util.List;
 
 public class MagicWand extends Item {
-    public MagicWand(Settings settings) {
+    public MagicWand(Integer tier, Settings settings) {
         super(settings);
+        this.tier = tier;
     }
+    private final Integer tier;
 
     @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
@@ -50,4 +52,6 @@ public class MagicWand extends Item {
             spells.forEach(spell -> tooltip.add(Text.translatable("item." + spell.replaceAll(":",".")).formatted(Formatting.GOLD)));
         }
     }
+
+
 }

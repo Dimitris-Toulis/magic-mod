@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "magic-mod:item/magic_wand_tier_2"
+  }
+}

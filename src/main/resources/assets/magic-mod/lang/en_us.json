@@ -1,6 +1,8 @@
 {
   "item.magic-mod.magic_dust": "Magic Dust",
   "item.magic-mod.magic_wand_tier_1": "Magic Wand",
+  "item.magic-mod.magic_wand_tier_2": "Magic Wand",
+  "item.magic-mod.magic_wand_tier_3": "Magic Wand",
   "block.magic-mod.magic_ore": "Magic Ore",
   "block.magic-mod.deepslate_magic_ore": "Deepslate Magic Ore",
   "item.magic-mod.spell_fireball": "Fireball Spell",
