@@ -1,5 +1,19 @@
 {
   "variants": {
-    "": { "model": "magic-mod:block/magic_nullifier" }
+    "facing=east": {
+      "model": "magic-mod:block/magic_nullifier",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "magic-mod:block/magic_nullifier"
+    },
+    "facing=south": {
+      "model": "magic-mod:block/magic_nullifier",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "magic-mod:block/magic_nullifier",
+      "y": 270
+    }
   }
 }
