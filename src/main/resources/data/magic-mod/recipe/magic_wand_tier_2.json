@@ -6,11 +6,11 @@
     "O  "
   ],
   "key": {
-    "#": "magic-mod:magic_dust",
+    "#": "magic-mod:concentrated_magic_dust",
     "O": "minecraft:stick"
   },
   "result": {
-    "id": "magic-mod:magic_wand_tier_1",
+    "id": "magic-mod:magic_wand_tier_2",
     "count": 1
   }
 }

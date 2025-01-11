@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "LGL",
+    "MMM"
+  ],
+  "key": {
+    "M": "magic-mod:magic_dust",
+    "L": "minecraft:lapis_lazuli",
+    "G": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "magic-mod:concentrated_magic_dust",
+    "count": 1
+  }
+}
