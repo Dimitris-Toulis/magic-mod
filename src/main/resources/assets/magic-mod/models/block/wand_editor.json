@@ -1,0 +1,9 @@
+{
+  "parent": "block/cube_bottom_top",
+  "textures": {
+    "bottom": "magic-mod:block/wand_editor_bottom",
+    "particle": "magic-mod:block/wand_editor_top",
+    "side": "magic-mod:block/wand_editor_side",
+    "top": "magic-mod:block/wand_editor_top"
+  }
+}

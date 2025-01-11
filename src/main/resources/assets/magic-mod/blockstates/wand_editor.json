@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "magic-mod:block/wand_editor",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "magic-mod:block/wand_editor"
+    },
+    "facing=south": {
+      "model": "magic-mod:block/wand_editor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "magic-mod:block/wand_editor",
+      "y": 270
+    }
+  }
+}
