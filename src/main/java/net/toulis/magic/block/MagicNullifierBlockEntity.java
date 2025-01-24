@@ -6,7 +6,6 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -21,6 +20,7 @@ import net.toulis.magic.ModComponents;
 import net.toulis.magic.item.MagicWand;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MagicNullifierBlockEntity extends BlockEntity {
     public MagicNullifierBlockEntity(BlockPos pos, BlockState state) {
@@ -37,14 +37,15 @@ public class MagicNullifierBlockEntity extends BlockEntity {
                 entity -> entity.getItemAge() > 20 && entity.getStack().getItem() instanceof MagicWand && !entity.isInvulnerable()
         );
         for(ItemEntity wand: droppedItems) {
-            ItemStack stack = wand.getStack();
-            if(!stack.getComponents().contains(ModComponents.SPELLS_COMPONENT)){
+            List<String> spells = wand.getStack().get(ModComponents.SPELLS_COMPONENT);
+            if(spells == null){
                 continue;
             }
-            for(String spell: stack.remove(ModComponents.SPELLS_COMPONENT)){
-                RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(spell));
-                wand.dropItem((ServerWorld) world, Registries.ITEM.get(registryKey)).setInvulnerable(true);
+            for(String spell: spells){
+                Item item = Registries.ITEM.get(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(spell)));
+                Objects.requireNonNull(wand.dropItem((ServerWorld) world, item)).setInvulnerable(true);
             }
+            wand.getStack().remove(ModComponents.SPELLS_COMPONENT);
             wand.setInvulnerable(true);
             LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
             lightningBolt.setPosition(wand.getPos());
