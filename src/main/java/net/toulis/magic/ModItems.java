@@ -8,6 +8,9 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.toulis.magic.item.MagicWand;
+import net.toulis.magic.spell.ArrowSpell;
+import net.toulis.magic.spell.FireballSpell;
+import net.toulis.magic.spell.LightningSpell;
 
 import java.util.function.Function;
 
@@ -18,9 +21,9 @@ public class ModItems {
     public static final Item MAGIC_WAND_TIER_2 = register("magic_wand_tier_2", settings -> new MagicWand(2,settings), new Item.Settings().maxCount(1));
     public static final Item MAGIC_WAND_TIER_3 = register("magic_wand_tier_3", settings -> new MagicWand(3,settings), new Item.Settings().maxCount(1));
 
-    public static final Item SPELL_FIREBALL = register("spell_fireball", Item::new, new Item.Settings());
-    public static final Item SPELL_LIGHTNING_BOLT = register("spell_lightning_bolt", Item::new, new Item.Settings());
-    public static final Item SPELL_ARROW = register("spell_arrow", Item::new, new Item.Settings());
+    public static final Item SPELL_FIREBALL = register("spell_fireball", FireballSpell::new, new Item.Settings());
+    public static final Item SPELL_LIGHTNING_BOLT = register("spell_lightning_bolt", LightningSpell::new, new Item.Settings());
+    public static final Item SPELL_ARROW = register("spell_arrow", ArrowSpell::new, new Item.Settings());
 
     public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
         final RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MagicMod.MOD_ID, path));
