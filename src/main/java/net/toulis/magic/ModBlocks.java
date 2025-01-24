@@ -10,7 +10,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.toulis.magic.block.MagicNullifier;
-import net.toulis.magic.block.WandEditor;
+import net.toulis.magic.block.wandEditor.WandEditor;
 
 import java.util.function.Function;
 

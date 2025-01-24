@@ -53,5 +53,13 @@ public class MagicWand extends Item {
         }
     }
 
+    public int getMaxSpells(){
+        return switch (tier) {
+            case 1 -> 3;
+            case 2 -> 8;
+            case 3 -> 14;
+            default -> 0;
+        };
+    }
 
 }

@@ -10,5 +10,6 @@
   "item.magic-mod.spell_lightning_bolt": "Lightning Spell",
   "item.magic-mod.spell_arrow": "Arrow Spell",
   "block.magic-mod.magic_nullifier": "Magic Nullifier",
-  "block.magic-mod.wand_editor": "Wand Editor"
+  "block.magic-mod.wand_editor": "Wand Editor",
+  "tag.item.magic-mod.spell": "Spell"
 }

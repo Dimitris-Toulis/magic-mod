@@ -17,11 +17,12 @@
 	"entrypoints": {
 		"main": [
 			"net.toulis.magic.MagicMod"
+		],
+		"client": [
+			"net.toulis.magic.ClientMagicMod"
 		]
 	},
-	"mixins": [
-		"magic-mod.mixins.json"
-	],
+	"mixins": [],
 	"depends": {
 		"fabricloader": ">=0.16.9",
 		"minecraft": "~1.21.3",
