@@ -11,6 +11,7 @@ import net.toulis.magic.item.MagicWand;
 import net.toulis.magic.spell.ExplodingArrowSpell;
 import net.toulis.magic.spell.FireballSpell;
 import net.toulis.magic.spell.LightningSpell;
+import net.toulis.magic.spell.TeleportSpell;
 
 import java.util.function.Function;
 
@@ -24,6 +25,7 @@ public class ModItems {
     public static final Item SPELL_FIREBALL = register("spell_fireball", FireballSpell::new, new Item.Settings());
     public static final Item SPELL_LIGHTNING_BOLT = register("spell_lightning_bolt", LightningSpell::new, new Item.Settings());
     public static final Item SPELL_EXPLODING_ARROW = register("spell_exploding_arrow", ExplodingArrowSpell::new, new Item.Settings());
+    public static final Item SPELL_TELEPORT = register("spell_teleport", TeleportSpell::new, new Item.Settings());
 
     public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
         final RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MagicMod.MOD_ID, path));
@@ -39,6 +41,7 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_FIREBALL));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_LIGHTNING_BOLT));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_EXPLODING_ARROW));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_TELEPORT));
     }
 
 }

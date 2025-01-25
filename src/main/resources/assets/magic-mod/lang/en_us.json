@@ -9,7 +9,7 @@
   "item.magic-mod.spell_fireball": "Fireball Spell",
   "item.magic-mod.spell_lightning_bolt": "Lightning Spell",
   "item.magic-mod.spell_exploding_arrow": "Exploding Arrow Spell",
+  "item.magic-mod.spell_teleport": "Teleport Spell",
   "block.magic-mod.magic_nullifier": "Magic Nullifier",
-  "block.magic-mod.wand_editor": "Wand Editor",
-  "tag.item.magic-mod.spell": "Spell"
+  "block.magic-mod.wand_editor": "Wand Editor"
 }
