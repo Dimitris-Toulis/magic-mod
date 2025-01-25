@@ -15,9 +15,9 @@ public class ExplodingArrowSpell extends Item implements SpellItem {
         super(settings);
     }
 
-    public void cast(World world, PlayerEntity player) {
+    public void cast(World world, PlayerEntity player, int wandTier) {
         Vec3d pos = player.getEyePos();
-        ArrowEntity arrowEntity = new ExplodingArrowEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.ARROW), null);
+        ArrowEntity arrowEntity = new ExplodingArrowEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.ARROW), null, 3.0F + wandTier);
         arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
         arrowEntity.setVelocity(player, player.getPitch(), player.getYaw(), 0.0F, 3.0F, 0.0F);
         world.spawnEntity(arrowEntity);

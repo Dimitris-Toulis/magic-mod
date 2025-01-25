@@ -12,8 +12,8 @@ public class FireballSpell extends Item implements SpellItem {
     }
 
     @Override
-    public void cast(World world, PlayerEntity player) {
-        FireballEntity fireballEntity = new FireballEntity(world,player,new Vec3d(0,0,0),3);
+    public void cast(World world, PlayerEntity player, int wandTier) {
+        FireballEntity fireballEntity = new FireballEntity(world,player,new Vec3d(0,0,0),2 + wandTier);
         fireballEntity.setVelocity(player, player.getPitch(), player.getYaw(), 0.0F, 3.0F, 0.0F);
         world.spawnEntity(fireballEntity);
     }

@@ -16,7 +16,7 @@ public class TeleportSpell extends Item implements SpellItem{
     }
 
     @Override
-    public void cast(World world, PlayerEntity player) {
+    public void cast(World world, PlayerEntity player, int wandTier) {
         Vec3d pos = player.getEyePos();
         Vec3d end = pos.add(player.getRotationVector(player.getPitch(), player.getYaw()).multiply(5*player.getBlockInteractionRange()));
         BlockHitResult blockHitResult =  world.raycast(new RaycastContext(pos, end, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));

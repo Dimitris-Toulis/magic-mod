@@ -39,7 +39,7 @@ public class MagicWand extends Item {
         if(spellList == null) return;
 
         SpellItem spell = (SpellItem) Registries.ITEM.get(Identifier.of(spellList.get(this.castIndex))).asItem();
-        spell.cast(world,player);
+        spell.cast(world,player,this.tier);
         this.castIndex = (this.castIndex + 1) % spellList.size();
 
         int cooldown = Integer.max(spell.getCooldown()+this.getCooldown(),this.castIndex == 0 ? this.getRechargeTime() : 0);
