@@ -38,7 +38,7 @@ public class ExplodingArrowEntity extends ArrowEntity {
                         this.getZ(),
                         4.0F,
                         true,
-                        World.ExplosionSourceType.TRIGGER
+                        World.ExplosionSourceType.TNT
                 );
     }
 }
