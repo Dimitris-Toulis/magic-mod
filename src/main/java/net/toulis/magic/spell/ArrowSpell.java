@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.toulis.magic.entity.ExplodingArrowEntity;
 
 public class ArrowSpell extends Item implements SpellItem {
     public ArrowSpell(Settings settings) {
@@ -17,9 +18,10 @@ public class ArrowSpell extends Item implements SpellItem {
     @Override
     public void cast(World world, PlayerEntity player) {
         Vec3d pos = player.getEyePos();
-        ArrowEntity arrowEntity = new ArrowEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.ARROW), null);
+        ArrowEntity arrowEntity = new ExplodingArrowEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.ARROW), null);
         arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
-        arrowEntity.setVelocity(player, player.getPitch(), player.getYaw(), 0.0F, 5.0F, 0.0F);
+        arrowEntity.setVelocity(player, player.getPitch(), player.getYaw(), 0.0F, 3.0F, 0.0F);
         world.spawnEntity(arrowEntity);
     }
+
 }
