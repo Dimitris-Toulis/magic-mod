@@ -15,13 +15,16 @@ public class ArrowSpell extends Item implements SpellItem {
         super(settings);
     }
 
-    @Override
     public void cast(World world, PlayerEntity player) {
         Vec3d pos = player.getEyePos();
         ArrowEntity arrowEntity = new ExplodingArrowEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.ARROW), null);
         arrowEntity.pickupType = PersistentProjectileEntity.PickupPermission.DISALLOWED;
         arrowEntity.setVelocity(player, player.getPitch(), player.getYaw(), 0.0F, 3.0F, 0.0F);
         world.spawnEntity(arrowEntity);
+    }
+
+    public int getCooldown() {
+        return 5;
     }
 
 }

@@ -5,4 +5,5 @@ import net.minecraft.world.World;
 
 public interface SpellItem {
     void cast(World world, PlayerEntity player);
+    int getCooldown();
 }

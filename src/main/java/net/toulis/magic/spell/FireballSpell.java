@@ -14,4 +14,7 @@ public class FireballSpell extends Item implements SpellItem {
     public void cast(World world, PlayerEntity player) {
         MagicMod.LOGGER.info("Fireball cast");
     }
+    public int getCooldown() {
+        return 7;
+    }
 }

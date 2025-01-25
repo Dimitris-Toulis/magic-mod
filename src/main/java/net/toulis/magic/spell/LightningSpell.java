@@ -31,4 +31,8 @@ public class LightningSpell extends Item implements SpellItem {
             world.spawnEntity(lightningBolt);
         }
     }
+
+    public int getCooldown() {
+        return 10;
+    }
 }
