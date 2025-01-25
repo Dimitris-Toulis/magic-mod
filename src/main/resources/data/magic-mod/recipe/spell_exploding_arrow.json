@@ -2,15 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
-    "#O#",
+    "&O&",
     "###"
   ],
   "key": {
     "#": "magic-mod:magic_dust",
-    "O": "minecraft:arrow"
+    "O": "minecraft:arrow",
+    "&": "minecraft:gunpowder"
   },
   "result": {
-    "id": "magic-mod:spell_arrow",
+    "id": "magic-mod:spell_exploding_arrow",
     "count": 1
   }
 }

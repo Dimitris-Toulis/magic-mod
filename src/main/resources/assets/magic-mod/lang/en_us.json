@@ -8,7 +8,7 @@
   "block.magic-mod.deepslate_magic_ore": "Deepslate Magic Ore",
   "item.magic-mod.spell_fireball": "Fireball Spell",
   "item.magic-mod.spell_lightning_bolt": "Lightning Spell",
-  "item.magic-mod.spell_arrow": "Arrow Spell",
+  "item.magic-mod.spell_exploding_arrow": "Exploding Arrow Spell",
   "block.magic-mod.magic_nullifier": "Magic Nullifier",
   "block.magic-mod.wand_editor": "Wand Editor",
   "tag.item.magic-mod.spell": "Spell"

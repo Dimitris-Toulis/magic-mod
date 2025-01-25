@@ -1,8 +1,0 @@
-{
-  "replace": true,
-  "values": [
-    "magic-mod:spell_fireball",
-    "magic-mod:spell_lightning_bolt",
-    "magic-mod:spell_arrow"
-  ]
-}

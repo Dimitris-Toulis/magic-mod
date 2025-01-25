@@ -14,8 +14,9 @@ import net.minecraft.world.World;
 import net.toulis.magic.ModBlockEntities;
 import net.toulis.magic.ModBlocks;
 import net.toulis.magic.ModComponents;
-import net.toulis.magic.ModTags;
 import net.toulis.magic.item.MagicWand;
+import net.toulis.magic.spell.SpellItem;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,7 +44,7 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
     private static ForgingSlotsManager createForgingSlotsManager() {
         return ForgingSlotsManager.builder()
                 .input(0, 25, 48, itemStack -> itemStack.getItem() instanceof MagicWand)
-                .input(1, 70, 48, itemStack -> itemStack.isIn(ModTags.SPELL))
+                .input(1, 70, 48, itemStack -> itemStack.getItem() instanceof SpellItem)
                 .output(2, 126, 48)
                 .build();
     }
@@ -81,7 +82,7 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
     public void updateResult() {
         if (this.world instanceof ServerWorld) {
             Item wand = this.input.getStack(0).getItem();
-            if (wand instanceof MagicWand && this.input.getStack(1).isIn(ModTags.SPELL)) {
+            if (wand instanceof MagicWand && this.input.getStack(1).getItem() instanceof SpellItem) {
                 ItemStack out = this.input.getStack(0).copy();
                 List<String> spells = new ArrayList<>(out.getOrDefault(ModComponents.SPELLS_COMPONENT, new ArrayList<>()));
                 if (spells.size() < ((MagicWand) wand).getMaxSpells()) {

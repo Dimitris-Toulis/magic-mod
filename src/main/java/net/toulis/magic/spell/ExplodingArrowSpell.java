@@ -10,8 +10,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.toulis.magic.entity.ExplodingArrowEntity;
 
-public class ArrowSpell extends Item implements SpellItem {
-    public ArrowSpell(Settings settings) {
+public class ExplodingArrowSpell extends Item implements SpellItem {
+    public ExplodingArrowSpell(Settings settings) {
         super(settings);
     }
 

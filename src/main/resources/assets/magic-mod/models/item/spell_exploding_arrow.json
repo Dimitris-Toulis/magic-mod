@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "magic-mod:item/spell_arrow"
+    "layer0": "magic-mod:item/spell_exploding_arrow"
   }
 }
