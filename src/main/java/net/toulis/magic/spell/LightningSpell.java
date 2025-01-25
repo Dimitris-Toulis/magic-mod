@@ -35,4 +35,8 @@ public class LightningSpell extends Item implements SpellItem {
     public int getCooldown() {
         return 10;
     }
+    @Override
+    public int getTier() {
+        return 3;
+    }
 }

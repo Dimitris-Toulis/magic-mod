@@ -17,4 +17,8 @@ public class FireballSpell extends Item implements SpellItem {
     public int getCooldown() {
         return 7;
     }
+    @Override
+    public int getTier() {
+        return 1;
+    }
 }

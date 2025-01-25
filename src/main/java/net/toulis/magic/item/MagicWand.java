@@ -81,5 +81,7 @@ public class MagicWand extends Item {
             default -> 0;
         };
     }
-
+    public int getTier() {
+        return tier;
+    }
 }
