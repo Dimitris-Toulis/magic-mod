@@ -3,6 +3,8 @@ package net.toulis.magic.item;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.UseCooldownComponent;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,8 +12,10 @@ import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.toulis.magic.MagicMod;
+import net.toulis.magic.ModBlocks;
 import net.toulis.magic.spell.ContinueSpell;
 import net.toulis.magic.spell.SpellItem;
 import org.jetbrains.annotations.Nullable;
@@ -40,6 +44,7 @@ public class MagicWand extends Item {
     private void cast(World world, PlayerEntity player, ItemStack stack) {
         List<String> spellList = stack.get(SPELLS_COMPONENT);
         if(spellList == null) return;
+        if(detectNullifier(world,player,stack)) return;
         int castingIndex = stack.getOrDefault(CASTING_INDEX,0);
 
         SpellItem spell = (SpellItem) Registries.ITEM.get(Identifier.of(spellList.get(castingIndex))).asItem();
@@ -101,6 +106,29 @@ public class MagicWand extends Item {
                 tooltip.add(Text.translatable(Registries.ITEM.get(Identifier.of(spells.get(i))).getTranslationKey()).formatted(current ? Formatting.DARK_PURPLE :Formatting.GOLD));
             }
         }
+    }
+
+    private boolean detectNullifier(World world, PlayerEntity player, ItemStack stack){
+        boolean nullifier_close = false;
+        BlockPos playerPos = player.getBlockPos();
+        int radius = 5;
+        for (int x = -radius; x <= radius; x++) {
+            for (int y = -radius; y <= radius; y++) {
+                for (int z = -radius; z <= radius; z++) {
+                    BlockPos checkPos = playerPos.add(x, y, z);
+                    if (world.getBlockState(checkPos).getBlock() == ModBlocks.MAGIC_NULLIFIER) {
+                        nullifier_close = true;
+                    }
+                }
+            }
+        }
+        if(!nullifier_close) return false;
+        LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
+        lightningBolt.setPosition(player.getPos());
+        world.spawnEntity(lightningBolt);
+        Objects.requireNonNull(player.dropItem(stack, false)).setInvulnerable(true);
+        player.getInventory().removeOne(stack);
+        return true;
     }
 
     public int getMaxSpells(){

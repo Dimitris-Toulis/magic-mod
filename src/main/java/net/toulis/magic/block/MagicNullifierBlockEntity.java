@@ -34,7 +34,7 @@ public class MagicNullifierBlockEntity extends BlockEntity {
         List<ItemEntity> droppedItems = world.getEntitiesByType(
                 TypeFilter.instanceOf(ItemEntity.class),
                 Box.of(pos.toCenterPos(),5.0,5.0,5.0),
-                entity -> entity.getItemAge() > 20 && entity.getStack().getItem() instanceof MagicWand && !entity.isInvulnerable()
+                entity -> entity.getItemAge() > 20 && entity.getStack().getItem() instanceof MagicWand && (!entity.isInvulnerable() || entity.getStack().contains(ModComponents.SPELLS_COMPONENT))
         );
         for(ItemEntity wand: droppedItems) {
             List<String> spells = wand.getStack().get(ModComponents.SPELLS_COMPONENT);
