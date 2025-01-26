@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "#": "magic-mod:magic_dust",
+    "O": "minecraft:splash_potion"
+  },
+  "result": {
+    "id": "magic-mod:spell_random_potion",
+    "count": 1
+  }
+}

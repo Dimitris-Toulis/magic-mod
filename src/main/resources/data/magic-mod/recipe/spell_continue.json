@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "#": "magic-mod:magic_dust",
+    "O": "minecraft:prismarine_crystals"
+  },
+  "result": {
+    "id": "magic-mod:spell_continue",
+    "count": 1
+  }
+}

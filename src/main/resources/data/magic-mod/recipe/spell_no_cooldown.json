@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C#C",
+    "#O#",
+    "C#C"
+  ],
+  "key": {
+    "#": "magic-mod:magic_dust",
+    "O": "minecraft:echo_shard",
+    "C": "magic-mod:concentrated_magic_dust"
+  },
+  "result": {
+    "id": "magic-mod:spell_no_cooldown",
+    "count": 1
+  }
+}

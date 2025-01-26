@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##C",
+    "#O#",
+    "C##"
+  ],
+  "key": {
+    "#": "magic-mod:magic_dust",
+    "O": "minecraft:amethyst_shard",
+    "C": "magic-mod:concentrated_magic_dust"
+  },
+  "result": {
+    "id": "magic-mod:spell_cast_all",
+    "count": 1
+  }
+}
