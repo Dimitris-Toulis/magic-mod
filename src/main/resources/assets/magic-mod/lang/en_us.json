@@ -15,6 +15,7 @@
   "item.magic-mod.spell_cast_all": "Cast All Spell",
   "item.magic-mod.spell_continue": "Continue Spell",
   "item.magic-mod.spell_no_cooldown": "No Cooldown Spell",
+  "item.magic-mod.spell_random_potion": "Random Potion Spell",
   "block.magic-mod.magic_nullifier": "Magic Nullifier",
   "block.magic-mod.wand_editor": "Wand Editor",
   "container.wand_editor.too_many_spells": "Too many spells!",

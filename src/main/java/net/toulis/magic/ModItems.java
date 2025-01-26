@@ -29,6 +29,7 @@ public class ModItems {
     public static final Item SPELL_CAST_ALL = register("spell_cast_all", CastAllSpell::new, new Item.Settings().rarity(Rarity.RARE));
     public static final Item SPELL_CONTINUE = register("spell_continue", ContinueSpell::new, new Item.Settings().rarity(Rarity.RARE));
     public static final Item SPELL_NO_COOLDOWN = register("spell_no_cooldown", NoCooldownSpell::new, new Item.Settings().rarity(Rarity.EPIC));
+    public static final Item SPELL_RANDOM_POTION = register("spell_random_potion", RandomPotionSpell::new, new Item.Settings().rarity(Rarity.EPIC));
 
     public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
         final RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MagicMod.MOD_ID, path));
@@ -50,6 +51,7 @@ public class ModItems {
             itemGroup.add(SPELL_FIREBALL);
             itemGroup.add(SPELL_EXPLODING_ARROW);
             itemGroup.add(SPELL_REDUCE_RECHARGE);
+            itemGroup.add(SPELL_RANDOM_POTION);
             itemGroup.add(SPELL_TELEPORT);
             itemGroup.add(SPELL_CAST_ALL);
             itemGroup.add(SPELL_CONTINUE);
