@@ -11,11 +11,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.toulis.magic.MagicMod;
-import net.toulis.magic.ModComponents;
 import net.toulis.magic.spell.SpellItem;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Optional;
+
+import static net.toulis.magic.ModComponents.*;
 
 public class MagicWand extends Item {
     public MagicWand(int tier, Settings settings) {
@@ -23,7 +25,6 @@ public class MagicWand extends Item {
         this.tier = tier;
     }
     private final int tier;
-    private int castIndex = 0;
 
     @Override
     public ActionResult use(World world, PlayerEntity player, Hand hand) {
@@ -35,24 +36,32 @@ public class MagicWand extends Item {
     }
 
     private void cast(World world, PlayerEntity player, ItemStack stack) {
-        List<String> spellList = stack.get(ModComponents.SPELLS_COMPONENT);
+        List<String> spellList = stack.get(SPELLS_COMPONENT);
         if(spellList == null) return;
+        int castingIndex = stack.getOrDefault(CASTING_INDEX,0);
 
-        SpellItem spell = (SpellItem) Registries.ITEM.get(Identifier.of(spellList.get(this.castIndex))).asItem();
-        spell.cast(world,player,this.tier);
-        this.castIndex = (this.castIndex + 1) % spellList.size();
+        SpellItem spell = (SpellItem) Registries.ITEM.get(Identifier.of(spellList.get(castingIndex))).asItem();
+        spell.cast(world,player,this.tier,stack);
+        castingIndex = (castingIndex + 1) % spellList.size();
 
-        int cooldown = Integer.max(spell.getCooldown()+this.getCooldown(),this.castIndex == 0 ? this.getRechargeTime() : 0);
+        int cooldown = spell.getCooldown()+this.getCooldown();
+        if(castingIndex == 0){
+            int rechargeReduction = stack.getOrDefault(REDUCE_RECHARGE_TIME,0);
+            cooldown = Integer.max(Integer.max(cooldown,this.getRechargeTime()) - rechargeReduction,0);
+        }
         stack.set(DataComponentTypes.USE_COOLDOWN, new UseCooldownComponent(cooldown, Optional.of(Identifier.of(MagicMod.MOD_ID, String.valueOf(world.random.nextInt(100))))));
         player.getItemCooldownManager().set(stack, cooldown);
+        stack.set(CASTING_INDEX,castingIndex);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        List<String> spells = stack.get(ModComponents.SPELLS_COMPONENT);
+        List<String> spells = stack.get(SPELLS_COMPONENT);
         if (spells != null) {
+            @Nullable Integer castingIndex = stack.get(CASTING_INDEX);
             for(int i=0;i<spells.size();i++){
-                tooltip.add(Text.translatable(Registries.ITEM.get(Identifier.of(spells.get(i))).getTranslationKey()).formatted(i == this.castIndex ? Formatting.AQUA :Formatting.GOLD));
+                boolean current = castingIndex != null && castingIndex == i;
+                tooltip.add(Text.translatable(Registries.ITEM.get(Identifier.of(spells.get(i))).getTranslationKey()).formatted(current ? Formatting.AQUA :Formatting.GOLD));
             }
         }
     }

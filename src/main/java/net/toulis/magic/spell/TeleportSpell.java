@@ -3,6 +3,7 @@ package net.toulis.magic.spell;
 import net.minecraft.entity.EntityStatuses;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Direction;
@@ -16,7 +17,7 @@ public class TeleportSpell extends Item implements SpellItem{
     }
 
     @Override
-    public void cast(World world, PlayerEntity player, int wandTier) {
+    public void cast(World world, PlayerEntity player, int wandTier, ItemStack stack) {
         Vec3d pos = player.getEyePos();
         Vec3d end = pos.add(player.getRotationVector(player.getPitch(), player.getYaw()).multiply(5*player.getBlockInteractionRange()));
         BlockHitResult blockHitResult =  world.raycast(new RaycastContext(pos, end, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));
