@@ -25,6 +25,11 @@ public class ModComponents {
             Identifier.of(MagicMod.MOD_ID, "casting_index"),
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
+    public static final ComponentType<Integer> CAST_UNTIL = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MagicMod.MOD_ID, "cast_until"),
+            ComponentType.<Integer>builder().codec(Codec.INT).build()
+    );
 
     protected static void init() {
         MagicMod.LOGGER.info("Registering {} components", MagicMod.MOD_ID);

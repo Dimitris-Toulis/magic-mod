@@ -26,6 +26,7 @@ public class ModItems {
     public static final Item SPELL_EXPLODING_ARROW = register("spell_exploding_arrow", ExplodingArrowSpell::new, new Item.Settings());
     public static final Item SPELL_TELEPORT = register("spell_teleport", TeleportSpell::new, new Item.Settings().rarity(Rarity.RARE));
     public static final Item SPELL_REDUCE_RECHARGE = register("spell_reduce_recharge", ReduceRechargeSpell::new, new Item.Settings());
+    public static final Item SPELL_CAST_ALL = register("spell_cast_all", CastAllSpell::new, new Item.Settings().rarity(Rarity.RARE));
 
     public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
         final RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MagicMod.MOD_ID, path));
@@ -48,6 +49,7 @@ public class ModItems {
             itemGroup.add(SPELL_EXPLODING_ARROW);
             itemGroup.add(SPELL_REDUCE_RECHARGE);
             itemGroup.add(SPELL_TELEPORT);
+            itemGroup.add(SPELL_CAST_ALL);
             itemGroup.add(SPELL_LIGHTNING_BOLT);
         });
     }

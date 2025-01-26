@@ -2,6 +2,7 @@ package net.toulis.magic.item;
 
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.UseCooldownComponent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,8 +15,7 @@ import net.toulis.magic.MagicMod;
 import net.toulis.magic.spell.SpellItem;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static net.toulis.magic.ModComponents.*;
 
@@ -35,6 +35,7 @@ public class MagicWand extends Item {
         return ActionResult.PASS;
     }
 
+
     private void cast(World world, PlayerEntity player, ItemStack stack) {
         List<String> spellList = stack.get(SPELLS_COMPONENT);
         if(spellList == null) return;
@@ -44,7 +45,8 @@ public class MagicWand extends Item {
         spell.cast(world,player,this.tier,stack);
         castingIndex = (castingIndex + 1) % spellList.size();
 
-        int cooldown = spell.getCooldown()+this.getCooldown();
+        int spellCooldown = spell.getCooldown();
+        int cooldown = spellCooldown == -1 ? 0 : spellCooldown+this.getCooldown();
         if(castingIndex == 0){
             int rechargeReduction = stack.getOrDefault(REDUCE_RECHARGE_TIME,0);
             cooldown = Integer.max(Integer.max(cooldown,this.getRechargeTime()) - rechargeReduction,0);
@@ -53,6 +55,26 @@ public class MagicWand extends Item {
         stack.set(DataComponentTypes.USE_COOLDOWN, new UseCooldownComponent(cooldown, Optional.of(Identifier.of(MagicMod.MOD_ID, String.valueOf(world.random.nextInt(1000000))))));
         player.getItemCooldownManager().set(stack, cooldown);
         stack.set(CASTING_INDEX,castingIndex);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected){
+        if(world.isClient){
+            return;
+        }
+        if(!(entity instanceof PlayerEntity)){
+            return;
+        }
+        Integer castUntil = stack.get(CAST_UNTIL);
+        if(castUntil != null) {
+            boolean coolingDown = ((PlayerEntity) entity).getItemCooldownManager().isCoolingDown(stack);
+            if(coolingDown) return;
+            int castingIndex = stack.getOrDefault(CASTING_INDEX,0);
+            cast(world,(PlayerEntity) entity,stack);
+            if(castUntil == castingIndex) {
+                stack.remove(CAST_UNTIL);
+            }
+        }
     }
 
     @Override

@@ -12,6 +12,7 @@
   "item.magic-mod.spell_exploding_arrow": "Exploding Arrow Spell",
   "item.magic-mod.spell_teleport": "Teleport Spell",
   "item.magic-mod.spell_reduce_recharge": "Reduce Recharge Spell",
+  "item.magic-mod.spell_cast_all": "Cast All Spell",
   "block.magic-mod.magic_nullifier": "Magic Nullifier",
   "block.magic-mod.wand_editor": "Wand Editor"
 }
