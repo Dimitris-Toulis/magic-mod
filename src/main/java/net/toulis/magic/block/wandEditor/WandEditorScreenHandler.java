@@ -91,6 +91,8 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
                     out.set(ModComponents.SPELLS_COMPONENT, Collections.unmodifiableList(spells));
                     this.output.setStack(0, out);
                 }
+            } else {
+                this.output.setStack(0, ItemStack.EMPTY);
             }
         } else {
             this.output.setLastRecipe(null);
