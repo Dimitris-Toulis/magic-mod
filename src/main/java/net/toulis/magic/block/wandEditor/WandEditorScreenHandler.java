@@ -3,9 +3,11 @@ package net.toulis.magic.block.wandEditor;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ForgingScreenHandler;
+import net.minecraft.screen.Property;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.ForgingSlotsManager;
 import net.minecraft.screen.slot.Slot;
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class WandEditorScreenHandler extends ForgingScreenHandler {
     private final World world;
-    //private final Property invalidRecipe = Property.create();
+    private final Property invalidRecipe = Property.create();
 
 
     public WandEditorScreenHandler(int syncId, PlayerInventory playerInventory) {
@@ -38,7 +40,7 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
         super(ModBlockEntities.WAND_EDITOR_SCREEN_HANDLER, syncId, playerInventory, context, createForgingSlotsManager());
 
         this.world = world;
-        //this.addProperty(this.invalidRecipe).set(0);
+        this.addProperty(this.invalidRecipe).set(0);
     }
 
     private static ForgingSlotsManager createForgingSlotsManager() {
@@ -69,14 +71,16 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
         }
     }
 
-    /*@Override
+    @Override
     public void onContentChanged(Inventory inventory) {
         super.onContentChanged(inventory);
         if (this.world instanceof ServerWorld) {
             boolean bl = this.getSlot(0).hasStack() && this.getSlot(1).hasStack() && !this.getSlot(this.getResultSlotIndex()).hasStack();
-            this.invalidRecipe.set(bl ? 1 : 0);
+            if(!bl) {
+                this.invalidRecipe.set(0);
+            }
         }
-    }*/
+    }
 
     @Override
     public void updateResult() {
@@ -90,6 +94,12 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
                     spells.addLast(this.input.getStack(1).getItem().toString());
                     out.set(ModComponents.SPELLS_COMPONENT, Collections.unmodifiableList(spells));
                     this.output.setStack(0, out);
+                } else if(spells.size() >= ((MagicWand) wand).getMaxSpells()) {
+                    this.invalidRecipe.set(1);
+                    this.output.setStack(0, ItemStack.EMPTY);
+                } else {
+                    this.invalidRecipe.set(2);
+                    this.output.setStack(0, ItemStack.EMPTY);
                 }
             } else {
                 this.output.setStack(0, ItemStack.EMPTY);
@@ -105,7 +115,7 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
         return slot.inventory != this.output && super.canInsertIntoSlot(stack, slot);
     }
 
-    /*public boolean hasInvalidRecipe() {
-        return this.invalidRecipe.get() > 0;
-    }*/
+    public int invalidRecipe() {
+        return this.invalidRecipe.get();
+    }
 }
