@@ -48,8 +48,9 @@ public class MagicWand extends Item {
         if(castingIndex == 0){
             int rechargeReduction = stack.getOrDefault(REDUCE_RECHARGE_TIME,0);
             cooldown = Integer.max(Integer.max(cooldown,this.getRechargeTime()) - rechargeReduction,0);
+            stack.set(REDUCE_RECHARGE_TIME,0);
         }
-        stack.set(DataComponentTypes.USE_COOLDOWN, new UseCooldownComponent(cooldown, Optional.of(Identifier.of(MagicMod.MOD_ID, String.valueOf(world.random.nextInt(100))))));
+        stack.set(DataComponentTypes.USE_COOLDOWN, new UseCooldownComponent(cooldown, Optional.of(Identifier.of(MagicMod.MOD_ID, String.valueOf(world.random.nextInt(1000000))))));
         player.getItemCooldownManager().set(stack, cooldown);
         stack.set(CASTING_INDEX,castingIndex);
     }
@@ -61,7 +62,7 @@ public class MagicWand extends Item {
             @Nullable Integer castingIndex = stack.get(CASTING_INDEX);
             for(int i=0;i<spells.size();i++){
                 boolean current = castingIndex != null && castingIndex == i;
-                tooltip.add(Text.translatable(Registries.ITEM.get(Identifier.of(spells.get(i))).getTranslationKey()).formatted(current ? Formatting.AQUA :Formatting.GOLD));
+                tooltip.add(Text.translatable(Registries.ITEM.get(Identifier.of(spells.get(i))).getTranslationKey()).formatted(current ? Formatting.DARK_PURPLE :Formatting.GOLD));
             }
         }
     }

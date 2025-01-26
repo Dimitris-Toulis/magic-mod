@@ -9,10 +9,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.toulis.magic.item.MagicWand;
-import net.toulis.magic.spell.ExplodingArrowSpell;
-import net.toulis.magic.spell.FireballSpell;
-import net.toulis.magic.spell.LightningSpell;
-import net.toulis.magic.spell.TeleportSpell;
+import net.toulis.magic.spell.*;
 
 import java.util.function.Function;
 
@@ -28,6 +25,7 @@ public class ModItems {
     public static final Item SPELL_LIGHTNING_BOLT = register("spell_lightning_bolt", LightningSpell::new, new Item.Settings().rarity(Rarity.EPIC));
     public static final Item SPELL_EXPLODING_ARROW = register("spell_exploding_arrow", ExplodingArrowSpell::new, new Item.Settings());
     public static final Item SPELL_TELEPORT = register("spell_teleport", TeleportSpell::new, new Item.Settings().rarity(Rarity.RARE));
+    public static final Item SPELL_REDUCE_RECHARGE = register("spell_reduce_recharge", ReduceRechargeSpell::new, new Item.Settings());
 
     public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
         final RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MagicMod.MOD_ID, path));
@@ -48,6 +46,7 @@ public class ModItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(itemGroup -> {
             itemGroup.add(SPELL_FIREBALL);
             itemGroup.add(SPELL_EXPLODING_ARROW);
+            itemGroup.add(SPELL_REDUCE_RECHARGE);
             itemGroup.add(SPELL_TELEPORT);
             itemGroup.add(SPELL_LIGHTNING_BOLT);
         });
