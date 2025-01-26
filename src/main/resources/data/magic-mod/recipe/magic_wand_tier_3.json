@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ##",
+    "G##",
+    "OG "
+  ],
+  "key": {
+    "#": "magic-mod:magic_essence",
+    "O": "minecraft:blaze_rod",
+    "G": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "magic-mod:magic_wand_tier_3",
+    "count": 1
+  }
+}

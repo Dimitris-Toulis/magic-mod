@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "C#C",
+    "##C",
     "#O#",
-    "C#C"
+    "C##"
   ],
   "key": {
     "#": "magic-mod:magic_dust",
-    "O": "minecraft:lightning_rod",
+    "O": "minecraft:ender_pearl",
     "C": "magic-mod:concentrated_magic_dust"
   },
   "result": {
-    "id": "magic-mod:spell_lightning_bolt",
+    "id": "magic-mod:spell_teleport",
     "count": 1
   }
 }

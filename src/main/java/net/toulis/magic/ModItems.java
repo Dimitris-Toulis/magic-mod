@@ -7,6 +7,7 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.toulis.magic.item.MagicWand;
 import net.toulis.magic.spell.ExplodingArrowSpell;
 import net.toulis.magic.spell.FireballSpell;
@@ -17,15 +18,16 @@ import java.util.function.Function;
 
 public class ModItems {
     public static final Item MAGIC_DUST = register("magic_dust", Item::new, new Item.Settings());
-    public static final Item CONCENTRATED_MAGIC_DUST = register("concentrated_magic_dust", Item::new, new Item.Settings());
+    public static final Item CONCENTRATED_MAGIC_DUST = register("concentrated_magic_dust", Item::new, new Item.Settings().rarity(Rarity.RARE));
+    public static final Item MAGIC_ESSENCE = register("magic_essence", Item::new, new Item.Settings().rarity(Rarity.EPIC));
     public static final Item MAGIC_WAND_TIER_1 = register("magic_wand_tier_1", settings -> new MagicWand(1,settings), new Item.Settings().maxCount(1));
-    public static final Item MAGIC_WAND_TIER_2 = register("magic_wand_tier_2", settings -> new MagicWand(2,settings), new Item.Settings().maxCount(1));
-    public static final Item MAGIC_WAND_TIER_3 = register("magic_wand_tier_3", settings -> new MagicWand(3,settings), new Item.Settings().maxCount(1));
+    public static final Item MAGIC_WAND_TIER_2 = register("magic_wand_tier_2", settings -> new MagicWand(2,settings), new Item.Settings().maxCount(1).rarity(Rarity.RARE));
+    public static final Item MAGIC_WAND_TIER_3 = register("magic_wand_tier_3", settings -> new MagicWand(3,settings), new Item.Settings().maxCount(1).rarity(Rarity.EPIC));
 
     public static final Item SPELL_FIREBALL = register("spell_fireball", FireballSpell::new, new Item.Settings());
-    public static final Item SPELL_LIGHTNING_BOLT = register("spell_lightning_bolt", LightningSpell::new, new Item.Settings());
+    public static final Item SPELL_LIGHTNING_BOLT = register("spell_lightning_bolt", LightningSpell::new, new Item.Settings().rarity(Rarity.EPIC));
     public static final Item SPELL_EXPLODING_ARROW = register("spell_exploding_arrow", ExplodingArrowSpell::new, new Item.Settings());
-    public static final Item SPELL_TELEPORT = register("spell_teleport", TeleportSpell::new, new Item.Settings());
+    public static final Item SPELL_TELEPORT = register("spell_teleport", TeleportSpell::new, new Item.Settings().rarity(Rarity.RARE));
 
     public static Item register(String path, Function<Item.Settings, Item> factory, Item.Settings settings) {
         final RegistryKey<Item> registryKey = RegistryKey.of(RegistryKeys.ITEM, Identifier.of(MagicMod.MOD_ID, path));
@@ -33,15 +35,22 @@ public class ModItems {
     }
 
     public static void init(){
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(itemGroup -> itemGroup.add(MAGIC_DUST));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(itemGroup -> itemGroup.add(CONCENTRATED_MAGIC_DUST));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(itemGroup -> itemGroup.add(MAGIC_WAND_TIER_1));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(itemGroup -> itemGroup.add(MAGIC_WAND_TIER_2));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(itemGroup -> itemGroup.add(MAGIC_WAND_TIER_3));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_FIREBALL));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_LIGHTNING_BOLT));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_EXPLODING_ARROW));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(SPELL_TELEPORT));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(itemGroup -> {
+            itemGroup.add(MAGIC_DUST);
+            itemGroup.add(CONCENTRATED_MAGIC_DUST);
+            itemGroup.add(MAGIC_ESSENCE);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(itemGroup -> {
+            itemGroup.add(MAGIC_WAND_TIER_1);
+            itemGroup.add(MAGIC_WAND_TIER_2);
+            itemGroup.add(MAGIC_WAND_TIER_3);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(itemGroup -> {
+            itemGroup.add(SPELL_FIREBALL);
+            itemGroup.add(SPELL_EXPLODING_ARROW);
+            itemGroup.add(SPELL_TELEPORT);
+            itemGroup.add(SPELL_LIGHTNING_BOLT);
+        });
     }
 
 }

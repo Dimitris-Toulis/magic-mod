@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MCM",
+    "BDB",
+    "MCM"
+  ],
+  "key": {
+    "M": "magic-mod:concentrated_magic_dust",
+    "C": "minecraft:crying_obsidian",
+    "B": "minecraft:blaze_powder",
+    "D": "minecraft:diamond"
+  },
+  "result": {
+    "id": "magic-mod:magic_nullifier",
+    "count": 1
+  }
+}

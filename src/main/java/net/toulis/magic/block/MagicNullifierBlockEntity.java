@@ -38,14 +38,13 @@ public class MagicNullifierBlockEntity extends BlockEntity {
         );
         for(ItemEntity wand: droppedItems) {
             List<String> spells = wand.getStack().get(ModComponents.SPELLS_COMPONENT);
-            if(spells == null){
-                continue;
+            if(spells != null) {
+                for (String spell : spells) {
+                    Item item = Registries.ITEM.get(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(spell)));
+                    Objects.requireNonNull(wand.dropItem((ServerWorld) world, item)).setInvulnerable(true);
+                }
+                wand.getStack().remove(ModComponents.SPELLS_COMPONENT);
             }
-            for(String spell: spells){
-                Item item = Registries.ITEM.get(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(spell)));
-                Objects.requireNonNull(wand.dropItem((ServerWorld) world, item)).setInvulnerable(true);
-            }
-            wand.getStack().remove(ModComponents.SPELLS_COMPONENT);
             wand.setInvulnerable(true);
             LightningEntity lightningBolt = new LightningEntity(EntityType.LIGHTNING_BOLT, world);
             lightningBolt.setPosition(wand.getPos());

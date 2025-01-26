@@ -7,7 +7,7 @@
   ],
   "key": {
     "#": "magic-mod:concentrated_magic_dust",
-    "O": "minecraft:stick"
+    "O": "minecraft:breeze_rod"
   },
   "result": {
     "id": "magic-mod:magic_wand_tier_2",

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "DND",
+    "MMM"
+  ],
+  "key": {
+    "M": "magic-mod:concentrated_magic_dust",
+    "D": "minecraft:dragon_breath",
+    "N": "minecraft:nether_star"
+  },
+  "result": {
+    "id": "magic-mod:magic_essence",
+    "count": 2
+  }
+}

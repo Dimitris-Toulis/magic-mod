@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MCM",
+    "MGM",
+    "MCM"
+  ],
+  "key": {
+    "M": "magic-mod:magic_dust",
+    "C": "minecraft:crying_obsidian",
+    "G": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "magic-mod:wand_editor",
+    "count": 1
+  }
+}

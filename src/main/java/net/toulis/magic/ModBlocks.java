@@ -30,9 +30,11 @@ public class ModBlocks {
     }
 
     public static void init() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(itemGroup -> itemGroup.add(MAGIC_ORE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(itemGroup -> itemGroup.add(DEEPSLATE_MAGIC_ORE));
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(itemGroup -> itemGroup.add(MAGIC_NULLIFIER));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(itemGroup -> {
+            itemGroup.add(MAGIC_ORE);
+            itemGroup.add(DEEPSLATE_MAGIC_ORE);
+            itemGroup.add(MAGIC_NULLIFIER);
+        });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(itemGroup -> itemGroup.add(WAND_EDITOR));
     }
 }
