@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#O#",
+    "###"
+  ],
+  "key": {
+    "#": "magic-mod:magic_dust",
+    "O": "minecraft:wind_charge"
+  },
+  "result": {
+    "id": "magic-mod:spell_reduce_recharge",
+    "count": 1
+  }
+}
