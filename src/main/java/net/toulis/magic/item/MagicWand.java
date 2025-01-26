@@ -47,7 +47,8 @@ public class MagicWand extends Item {
         castingIndex = (castingIndex + 1) % spellList.size();
 
         int spellCooldown = spell.getCooldown();
-        int cooldown = spellCooldown == -1 ? 0 : spellCooldown+this.getCooldown()+stack.getOrDefault(EXTRA_COOLDOWN,0);
+        int extraCooldown = stack.getOrDefault(EXTRA_COOLDOWN,0);
+        int cooldown = spellCooldown == -1 || extraCooldown == -1 ? 0 : spellCooldown+this.getCooldown()+extraCooldown;
         if(castingIndex == 0){
             int rechargeReduction = stack.getOrDefault(REDUCE_RECHARGE_TIME,0);
             cooldown = Integer.max(Integer.max(cooldown,this.getRechargeTime()) - rechargeReduction,0);
@@ -55,15 +56,19 @@ public class MagicWand extends Item {
             stack.remove(EXTRA_COOLDOWN);
         }
         stack.set(CASTING_INDEX,castingIndex);
+        if(extraCooldown != -1 && !(spell instanceof ContinueSpell)){
+            stack.remove(EXTRA_COOLDOWN);
+        }
 
         SpellItem nextSpell = (SpellItem) Registries.ITEM.get(Identifier.of(spellList.get(castingIndex))).asItem();
         if(nextSpell instanceof ContinueSpell) {
             cast(world,player,stack);
             return;
         }
-
-        stack.set(DataComponentTypes.USE_COOLDOWN, new UseCooldownComponent(cooldown, Optional.of(Identifier.of(MagicMod.MOD_ID, String.valueOf(world.random.nextInt(1000000))))));
-        player.getItemCooldownManager().set(stack, cooldown);
+        if(cooldown != 0){
+            stack.set(DataComponentTypes.USE_COOLDOWN, new UseCooldownComponent(cooldown, Optional.of(Identifier.of(MagicMod.MOD_ID, String.valueOf(world.random.nextInt(1000000))))));
+            player.getItemCooldownManager().set(stack, cooldown);
+        }
     }
 
     @Override
