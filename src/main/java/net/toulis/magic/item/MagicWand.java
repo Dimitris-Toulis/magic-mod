@@ -12,6 +12,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.toulis.magic.MagicMod;
+import net.toulis.magic.spell.ContinueSpell;
 import net.toulis.magic.spell.SpellItem;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,15 +47,23 @@ public class MagicWand extends Item {
         castingIndex = (castingIndex + 1) % spellList.size();
 
         int spellCooldown = spell.getCooldown();
-        int cooldown = spellCooldown == -1 ? 0 : spellCooldown+this.getCooldown();
+        int cooldown = spellCooldown == -1 ? 0 : spellCooldown+this.getCooldown()+stack.getOrDefault(EXTRA_COOLDOWN,0);
         if(castingIndex == 0){
             int rechargeReduction = stack.getOrDefault(REDUCE_RECHARGE_TIME,0);
             cooldown = Integer.max(Integer.max(cooldown,this.getRechargeTime()) - rechargeReduction,0);
-            stack.set(REDUCE_RECHARGE_TIME,0);
+            stack.remove(REDUCE_RECHARGE_TIME);
+            stack.remove(EXTRA_COOLDOWN);
         }
+        stack.set(CASTING_INDEX,castingIndex);
+
+        SpellItem nextSpell = (SpellItem) Registries.ITEM.get(Identifier.of(spellList.get(castingIndex))).asItem();
+        if(nextSpell instanceof ContinueSpell) {
+            cast(world,player,stack);
+            return;
+        }
+
         stack.set(DataComponentTypes.USE_COOLDOWN, new UseCooldownComponent(cooldown, Optional.of(Identifier.of(MagicMod.MOD_ID, String.valueOf(world.random.nextInt(1000000))))));
         player.getItemCooldownManager().set(stack, cooldown);
-        stack.set(CASTING_INDEX,castingIndex);
     }
 
     @Override

@@ -30,6 +30,11 @@ public class ModComponents {
             Identifier.of(MagicMod.MOD_ID, "cast_until"),
             ComponentType.<Integer>builder().codec(Codec.INT).build()
     );
+    public static final ComponentType<Integer> EXTRA_COOLDOWN = Registry.register(
+            Registries.DATA_COMPONENT_TYPE,
+            Identifier.of(MagicMod.MOD_ID, "extra_cooldown"),
+            ComponentType.<Integer>builder().codec(Codec.INT).build()
+    );
 
     protected static void init() {
         MagicMod.LOGGER.info("Registering {} components", MagicMod.MOD_ID);

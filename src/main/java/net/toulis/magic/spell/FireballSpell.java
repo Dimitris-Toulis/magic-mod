@@ -19,7 +19,7 @@ public class FireballSpell extends Item implements SpellItem {
         world.spawnEntity(fireballEntity);
     }
     public int getCooldown() {
-        return 7;
+        return 27;
     }
     @Override
     public int getTier() {
