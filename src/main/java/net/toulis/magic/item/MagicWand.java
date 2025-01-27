@@ -66,7 +66,7 @@ public class MagicWand extends Item {
         }
 
         SpellItem nextSpell = (SpellItem) Registries.ITEM.get(Identifier.of(spellList.get(castingIndex))).asItem();
-        if(nextSpell instanceof ContinueSpell) {
+        if(nextSpell instanceof ContinueSpell && castingIndex != 0) {
             cast(world,player,stack);
             return;
         }
@@ -89,6 +89,7 @@ public class MagicWand extends Item {
             boolean coolingDown = ((PlayerEntity) entity).getItemCooldownManager().isCoolingDown(stack);
             if(coolingDown) return;
             int castingIndex = stack.getOrDefault(CASTING_INDEX,0);
+            MagicMod.LOGGER.info("Casting! {}, {}",castingIndex,castUntil);
             cast(world,(PlayerEntity) entity,stack);
             Integer newCastUntil = stack.get(CAST_UNTIL);
             castUntil = newCastUntil == null ? castUntil : newCastUntil;
