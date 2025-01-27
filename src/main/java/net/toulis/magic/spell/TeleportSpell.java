@@ -23,7 +23,13 @@ public class TeleportSpell extends Item implements SpellItem{
         BlockHitResult blockHitResult =  world.raycast(new RaycastContext(pos, end, RaycastContext.ShapeType.OUTLINE, RaycastContext.FluidHandling.NONE, player));
 
         if (blockHitResult.getType() != HitResult.Type.MISS) {
-            Vec3d tpPosition = blockHitResult.getPos().offset(blockHitResult.getSide(),1);
+            Vec3d tpPosition;
+            Direction side = blockHitResult.getSide();
+            if(side == Direction.DOWN || side == Direction.UP) {
+                tpPosition = blockHitResult.getPos();
+            } else {
+                tpPosition = blockHitResult.getBlockPos().offset(blockHitResult.getSide()).toBottomCenterPos();
+            }
             player.teleport(tpPosition.getX(),tpPosition.getY(),tpPosition.getZ(),true);
         } else {
             Vec3d tpPosition = player.getEyePos().offset(player.getFacing(), 5).offset(Direction.DOWN,1);
