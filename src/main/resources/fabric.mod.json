@@ -2,16 +2,16 @@
 	"schemaVersion": 1,
 	"id": "magic-mod",
 	"version": "${version}",
-	"name": "Magic Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Magic Wands",
+	"description": "A mod adding wands and spells with interesting effects!",
 	"authors": [
-		"Me!"
+		"Dimitris Toulis"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/Dimitris-Toulis/magic-mod",
+		"sources": "https://github.com/Dimitris-Toulis/magic-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/magic-mod/icon.png",
 	"environment": "*",
 	"entrypoints": {
@@ -28,8 +28,5 @@
 		"minecraft": "~1.21.3",
 		"java": ">=21",
 		"fabric-api": "*"
-	},
-	"suggests": {
-		"another-mod": "*"
 	}
 }
