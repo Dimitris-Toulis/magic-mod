@@ -90,6 +90,8 @@ public class MagicWand extends Item {
             if(coolingDown) return;
             int castingIndex = stack.getOrDefault(CASTING_INDEX,0);
             cast(world,(PlayerEntity) entity,stack);
+            Integer newCastUntil = stack.get(CAST_UNTIL);
+            castUntil = newCastUntil == null ? castUntil : newCastUntil;
             if(castUntil == castingIndex) {
                 stack.remove(CAST_UNTIL);
             }

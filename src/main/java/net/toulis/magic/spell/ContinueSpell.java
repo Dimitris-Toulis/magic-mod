@@ -25,7 +25,8 @@ public class ContinueSpell extends Item implements SpellItem{
         stack.set(CAST_UNTIL, castingIndex+1);
         if(castingIndex != 0) {
             SpellItem previousSpell = (SpellItem) Registries.ITEM.get(Identifier.of(spells.get(castingIndex-1))).asItem();
-            stack.set(EXTRA_COOLDOWN, previousSpell.getCooldown());
+            int previousExtraCooldown = stack.getOrDefault(EXTRA_COOLDOWN,0);
+            if(previousExtraCooldown != -1) stack.set(EXTRA_COOLDOWN, previousExtraCooldown + previousSpell.getCooldown());
         }
     }
 
