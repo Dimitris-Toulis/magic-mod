@@ -113,7 +113,7 @@ public class MagicWand extends Item {
     private boolean detectNullifier(World world, PlayerEntity player, ItemStack stack){
         boolean nullifier_close = false;
         BlockPos playerPos = player.getBlockPos();
-        int radius = 5;
+        int radius = 10;
         for (int x = -radius; x <= radius; x++) {
             for (int y = -radius; y <= radius; y++) {
                 for (int z = -radius; z <= radius; z++) {
