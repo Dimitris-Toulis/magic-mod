@@ -2,12 +2,13 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "C#C",
-    "#O#",
+    "&O&",
     "C#C"
   ],
   "key": {
     "#": "magic-mod:magic_dust",
     "O": "minecraft:lightning_rod",
+    "&": "minecraft:blaze_powder",
     "C": "magic-mod:concentrated_magic_dust"
   },
   "result": {
