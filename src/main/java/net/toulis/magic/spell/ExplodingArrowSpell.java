@@ -24,7 +24,7 @@ public class ExplodingArrowSpell extends Item implements SpellItem {
     }
 
     public int getCooldown() {
-        return 5;
+        return 7;
     }
     @Override
     public int getTier() {

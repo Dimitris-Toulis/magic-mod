@@ -5,6 +5,7 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.explosion.Explosion;
 import org.jetbrains.annotations.Nullable;
 
 public class ExplodingArrowEntity extends ArrowEntity {
@@ -33,7 +34,7 @@ public class ExplodingArrowEntity extends ArrowEntity {
         this.getWorld()
                 .createExplosion(
                         this,
-                        null,
+                        Explosion.createDamageSource(this.getWorld(), this),
                         null,
                         this.getX(),
                         this.getBodyY(0.0625),
