@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import java.util.Objects;
 
 import static net.toulis.magic.ModComponents.CAST_UNTIL;
-import static net.toulis.magic.ModComponents.SPELLS_COMPONENT;
+import static net.toulis.magic.ModComponents.SPELLS;
 
 public class CastAllSpell extends Item implements SpellItem {
     public CastAllSpell(Settings settings) {
@@ -17,7 +17,7 @@ public class CastAllSpell extends Item implements SpellItem {
 
     @Override
     public void cast(World world, PlayerEntity player, int wandTier, ItemStack stack) {
-        stack.set(CAST_UNTIL, Objects.requireNonNull(stack.get(SPELLS_COMPONENT)).size()-1);
+        stack.set(CAST_UNTIL, Objects.requireNonNull(stack.get(SPELLS)).size()-1);
     }
 
     @Override

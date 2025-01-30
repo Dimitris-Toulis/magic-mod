@@ -42,7 +42,7 @@ public class MagicWand extends Item {
 
 
     private void cast(World world, PlayerEntity player, ItemStack stack) {
-        List<String> spellList = stack.get(SPELLS_COMPONENT);
+        List<String> spellList = stack.get(SPELLS);
         if(spellList == null) return;
         if(detectNullifier(world,player,stack)) return;
         int castingIndex = stack.getOrDefault(CASTING_INDEX,0);
@@ -89,7 +89,6 @@ public class MagicWand extends Item {
             boolean coolingDown = ((PlayerEntity) entity).getItemCooldownManager().isCoolingDown(stack);
             if(coolingDown) return;
             int castingIndex = stack.getOrDefault(CASTING_INDEX,0);
-            MagicMod.LOGGER.info("Casting! {}, {}",castingIndex,castUntil);
             cast(world,(PlayerEntity) entity,stack);
             Integer newCastUntil = stack.get(CAST_UNTIL);
             castUntil = newCastUntil == null ? castUntil : newCastUntil;
@@ -101,7 +100,7 @@ public class MagicWand extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        List<String> spells = stack.get(SPELLS_COMPONENT);
+        List<String> spells = stack.get(SPELLS);
         if (spells != null) {
             @Nullable Integer castingIndex = stack.get(CASTING_INDEX);
             for(int i=0;i<spells.size();i++){

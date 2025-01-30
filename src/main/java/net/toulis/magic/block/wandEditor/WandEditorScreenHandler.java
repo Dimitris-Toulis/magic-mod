@@ -89,10 +89,10 @@ public class WandEditorScreenHandler extends ForgingScreenHandler {
             Item spell = this.input.getStack(1).getItem();
             if (wand instanceof MagicWand && spell instanceof SpellItem) {
                 ItemStack out = this.input.getStack(0).copy();
-                List<String> spells = new ArrayList<>(out.getOrDefault(ModComponents.SPELLS_COMPONENT, new ArrayList<>()));
+                List<String> spells = new ArrayList<>(out.getOrDefault(ModComponents.SPELLS, new ArrayList<>()));
                 if (spells.size() < ((MagicWand) wand).getMaxSpells() && ((SpellItem) spell).getTier() <= ((MagicWand) wand).getTier()) {
                     spells.addLast(this.input.getStack(1).getItem().toString());
-                    out.set(ModComponents.SPELLS_COMPONENT, Collections.unmodifiableList(spells));
+                    out.set(ModComponents.SPELLS, Collections.unmodifiableList(spells));
                     this.output.setStack(0, out);
                 } else if(spells.size() >= ((MagicWand) wand).getMaxSpells()) {
                     this.invalidRecipe.set(1);

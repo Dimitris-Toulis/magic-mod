@@ -20,7 +20,7 @@ public class ContinueSpell extends Item implements SpellItem{
     @Override
     public void cast(World world, PlayerEntity player, int wandTier, ItemStack stack) {
         int castingIndex = Objects.requireNonNull(stack.get(CASTING_INDEX));
-        List<String> spells = Objects.requireNonNull(stack.get(SPELLS_COMPONENT));
+        List<String> spells = Objects.requireNonNull(stack.get(SPELLS));
         if(castingIndex == spells.size() - 1) return;
         stack.set(CAST_UNTIL, castingIndex+1);
         if(castingIndex != 0) {

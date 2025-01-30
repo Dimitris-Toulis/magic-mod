@@ -38,10 +38,10 @@ public class MagicNullifierBlockEntity extends BlockEntity {
         List<ItemEntity> droppedItems = world.getEntitiesByType(
                 TypeFilter.instanceOf(ItemEntity.class),
                 Box.of(pos.toCenterPos(),10.0,10.0,10.0),
-                entity -> entity.getItemAge() > 20 && entity.getStack().getItem() instanceof MagicWand && entity.getStack().contains(ModComponents.SPELLS_COMPONENT)
+                entity -> entity.getItemAge() > 20 && entity.getStack().getItem() instanceof MagicWand && entity.getStack().contains(ModComponents.SPELLS)
         );
         for(ItemEntity wand: droppedItems) {
-            List<String> spells = wand.getStack().get(ModComponents.SPELLS_COMPONENT);
+            List<String> spells = wand.getStack().get(ModComponents.SPELLS);
             if(spells != null) {
                 for (String spell : spells) {
                     Item item = Registries.ITEM.get(RegistryKey.of(RegistryKeys.ITEM, Identifier.of(spell)));
@@ -50,7 +50,7 @@ public class MagicNullifierBlockEntity extends BlockEntity {
                     stack.set(DataComponentTypes.DAMAGE_RESISTANT, new DamageResistantComponent(DamageTypeTags.IS_FIRE));
                     Objects.requireNonNull(wand.dropStack((ServerWorld) world, stack)).setInvulnerable(true);
                 }
-                wand.getStack().remove(ModComponents.SPELLS_COMPONENT);
+                wand.getStack().remove(ModComponents.SPELLS);
             }
             wand.setInvulnerable(true);
             wand.getStack().set(DataComponentTypes.DAMAGE_RESISTANT, new DamageResistantComponent(DamageTypeTags.IS_FIRE));

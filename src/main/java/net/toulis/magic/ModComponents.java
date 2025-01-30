@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ModComponents {
 
-    public static final ComponentType<List<String>> SPELLS_COMPONENT = Registry.register(
+    public static final ComponentType<List<String>> SPELLS = Registry.register(
             Registries.DATA_COMPONENT_TYPE,
             Identifier.of(MagicMod.MOD_ID, "spells"),
             ComponentType.<List<String>>builder().codec(Codec.list(Codec.STRING)).build()
