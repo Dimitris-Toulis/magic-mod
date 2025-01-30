@@ -2,6 +2,8 @@
 
 This mod adds magic wands and spells! The spells can be put in sequences to create unique combinations and powerful wands. There are destructive and utility spells and wands can be used for many purposes
 
+Download from [Github Releases](https://github.com/Dimitris-Toulis/magic-mod/releases/) or [Modrinth](https://modrinth.com/mod/magic-wands) (when it gets approved). Fabric is required
+
 ## Features
 
 ### Blocks
