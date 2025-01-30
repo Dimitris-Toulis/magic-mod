@@ -14,7 +14,7 @@ This mod adds magic wands and spells! The spells can be put in sequences to crea
   - Attempting to cast a wand near it will strike the player with a lightning bolt and force the wand to be dropped.
   - Any nearby wand with spells will be struck by lightning and the spells will be removed and dropped to the ground
     
-   ![image](https://github.com/user-attachments/assets/40d2288a-d387-4ccd-9147-e390faa56ca2)
+   ![image](https://github.com/user-attachments/assets/a122d51b-e622-4c24-93dd-3ecfbfbf5aed)
 
 - **Magic Ore**: Some magic dust is hidden in this ore, ready to be used! Find it between y=32 and y=-64
 
@@ -38,10 +38,10 @@ This mod adds magic wands and spells! The spells can be put in sequences to crea
 
 
 ### Cast Mechanics
-- When a wand is used it cast the next spell (which is highlighted with purple in the inventory tooltip)
+- When a wand is used it casts the next spell (which is highlighted with purple in the inventory tooltip)
 - Then, it cools down for a base delay (of the wand) plus the cast delay of the spell
 - After casting all spells it will recharge for the maximum of the wand recharge time and the cooldown
-- Some spells may alter this order and rules
+- Some spells may alter the casting order and these rules
 
 ### Spells
 - **Fireball Spell** (Tier 1): Creates a fireball than explodes and sets blocks on fire. Power scales with wand tier
